@@ -9,7 +9,7 @@ import Rodal from "rodal"
 
 const SignUp = () => {
     const [visible, setVisible] = useState(false)
-    const [openModal, setOpenModal] = useState(true)
+    const [openModal, setOpenModal] = useState(false)
     const [error, setError] = useState("")
 
     const form = useForm({
@@ -28,7 +28,7 @@ const SignUp = () => {
                 password: data.password
             })
             console.log(response)
-            if(response.status === 200) {
+            if(response.status === 201) {
                 console.log(response.ok)
                 setOpenModal(prev => !prev)
             }
@@ -39,10 +39,10 @@ const SignUp = () => {
     }
 
     useEffect(() => {
-        if (isSubmitSuccessful) {
+        if (isValid && isSubmitSuccessful) {
             reset()
         }
-    }, [isSubmitSuccessful, reset])
+    }, [isSubmitSuccessful, reset, isValid])
 
     return (
         <main className="my-[3rem] md:my-[2rem]">
@@ -121,10 +121,10 @@ const SignUp = () => {
                 </form>
                 <p className=" md:text-[1.1rem] font-normal leading-normal text-center">Already have an account? <NavLink to="/login" className="hover:underline text-secondary-500 md:text-[1rem]">login</NavLink></p>
             </section>
-            <Rodal height={300} width={370} visible={openModal} animation="zoom">
+            <Rodal height={300} width={370} visible={openModal} onClose={() => setOpenModal(prev => !prev)} animation="zoom">
                 <section className="py-6 flex flex-col items-center gap-4">
                     <p className="text-[#22c55e] font-bold text-[1.3rem] text-center">Thanks! your account has been successfully created.</p>
-                    <p className="text-center text-[1rem] text-[#334155]">Please check your inbox (check your spam if you don't see the email), a verification email has been sent to you. kindly verify your email to to able to login and complete your profile.</p>
+                    <p className="text-center text-[1rem] text-[#334155]">Please check your inbox (check your spam if you dont see the email), a verification email has been sent to you. kindly verify your email to to able to login and complete your profile.</p>
                     <button className="bg-secondary-500 text-primary-500 hover:bg-opacity-[0.95] px-[3rem] py-2 rounded-[.4rem]" onClick={() => setOpenModal(prev => !prev)}>OK</button>
                 </section>
             </Rodal>

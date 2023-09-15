@@ -32,7 +32,7 @@ const ResetPassword = () => {
                 newPassword: data.newPassword,
                 confirmPassword: data.confirmPassword
             })
-            if (response.status === 200) {
+            if (response.status === 201) {
                 setOpenModal(prev => !prev)
             }
         } catch(error) {
@@ -42,10 +42,10 @@ const ResetPassword = () => {
 
     //reset form if submission is successful
     useEffect(() => {
-        if (isSubmitSuccessful) {
+        if (isValid && isSubmitSuccessful) {
             reset()
         }
-    }, [isSubmitSuccessful, reset])
+    }, [isSubmitSuccessful, reset, isValid])
 
     return (
         <main className="mt-[2rem] md:mt-[.5rem]">

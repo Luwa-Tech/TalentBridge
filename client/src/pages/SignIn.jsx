@@ -31,10 +31,10 @@ const SignIn = () => {
     }
 
     useEffect(() => {
-        if (isSubmitSuccessful) {
+        if (isValid && isSubmitSuccessful) {
             reset()
         }
-    }, [isSubmitSuccessful, reset])
+    }, [isSubmitSuccessful, reset, isValid])
 
     return (
         <main className="my-[5rem]">

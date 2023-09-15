@@ -7,7 +7,7 @@ import Rodal from "rodal"
 
 const ForgotPassword = () => {
     const [error, setError] = useState("")
-    const [openModal, setOpenModal] = useState(true)
+    const [openModal, setOpenModal] = useState(false)
     const [responseMessage, setResponseMessage] = useState("")
 
     const form = useForm({
@@ -23,7 +23,7 @@ const ForgotPassword = () => {
                 email: data.email
             })
             
-            if (response.status === 200) {
+            if (response.status === 201) {
                 setResponseMessage(response.data.message)
                 setOpenModal(prev => !prev)
             }
@@ -33,10 +33,10 @@ const ForgotPassword = () => {
     }
 
     useEffect(() => {
-        if (isSubmitSuccessful) {
+        if (isValid && isSubmitSuccessful) {
             reset()
         }
-    }, [isSubmitSuccessful, reset])
+    }, [isSubmitSuccessful, reset, isValid])
 
     return (
         <main className="mt-[2rem] md:mt-[.5rem]">
