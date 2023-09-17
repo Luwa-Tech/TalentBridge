@@ -1,13 +1,21 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, } from "react-router-dom"
 import {useForm} from "react-hook-form"
 import {ImSpinner} from "react-icons/im"
 import axios from "axios"
 import { useState, useEffect } from "react"
 import {BsFillEyeFill, BsFillEyeSlashFill} from "react-icons/bs"
+// import useAuth from "../hooks/useAuth"
 
 const SignIn = () => {
+    // const {setAuth} = useAuth()
+
     const [error, setError] = useState("")
     const [visible, setVisible] = useState(false)
+
+    // const location = useLocation()
+    // const navigate = useNavigate()
+    // const from = location.state?.from?.pathname || "/"
+
     const form = useForm({
         mode: "onBlur"
     })
@@ -21,7 +29,7 @@ const SignIn = () => {
                 email: data.email,
                 password: data.password
         })
-        if(response.ok) {
+        if(response) {
             //give user access and redirect user profile
             console.log(response)
         }
@@ -72,7 +80,7 @@ const SignIn = () => {
                     {
                       error !== "" &&  <p className="text-red-700 text-[.95rem]">{error}</p>
                     }
-                    <button disabled={!isDirty || !isValid || isSubmitting} className={`bg-button-400 py-2 text-primary-500 hover:bg-opacity-[0.7] rounded-[0.3rem] md:text-[1.1rem] mb-2 ${isSubmitting || !isDirty || !isValid ? "bg-opacity-[0.7] hover:bg-opacity-[0.7] " : ""}`}>{isSubmitting ? <ImSpinner className={`${isSubmitting ? "animate-spin bg-opacity-[0.7]" : "animate-none"} w-6 h-6`}/> : "Login"}</button>
+                    <button disabled={!isDirty || !isValid || isSubmitting} className={`bg-button-400 py-2 text-primary-500 hover:bg-opacity-[0.7] flex justify-center items-center rounded-[0.3rem] md:text-[1.1rem] mb-2 ${isSubmitting || !isDirty || !isValid ? "bg-opacity-[0.7] hover:bg-opacity-[0.7]" : ""}`}>{isSubmitting ? <ImSpinner className={`${isSubmitting ? "animate-spin bg-opacity-[0.7]" : "animate-none"} w-6 h-6`}/> : "Login"}</button>
                 </form>
                 <p className=" md:text-[1.1rem] font-normal leading-normal text-center">No account yet? <NavLink to="/sign-up" className="hover:underline text-secondary-500 md:text-[1rem]">SignUp</NavLink></p>
             </section>

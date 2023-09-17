@@ -1,6 +1,6 @@
 import { NavLink, useLocation } from "react-router-dom"
 
-const RoutesWithoutFooter = ["/login", "/sign-up", "/reset-password", "/forgot-password", "/sign-up/verify-email", "/forgot-password/initialize_password_reset"]
+const RoutesWithoutFooter = ["/login", "/sign-up", "/reset-password", "/post-job", "/forgot-password", "/sign-up/verify-email", "/forgot-password/initialize_password_reset"]
 
 const Footer = () => {
     const {pathname} = useLocation()

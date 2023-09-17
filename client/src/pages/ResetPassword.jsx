@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom"
+import { NavLink, useNavigate, useParams } from "react-router-dom"
 import {useForm} from "react-hook-form"
 import { useState, useEffect } from "react"
 import {BsFillEyeFill, BsFillEyeSlashFill} from "react-icons/bs"
@@ -7,6 +7,7 @@ import axios from "axios"
 import Rodal from "rodal"
 
 const ResetPassword = () => {
+    const {resetToken} = useParams()
     const navigate = useNavigate()
     const [newPassword, setNewPassword] = useState(false)
     const [confirmPassword, setConfirmPassword] = useState(false)
@@ -28,11 +29,12 @@ const ResetPassword = () => {
     const resetPassword = async (data) => {
         try {
             //implement API token security
-            const response = await axios.post("https://talentbridge.onrender.com/api/user/reset-password-with-token?resetToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGYwOTVlZDEzM2YzYzA2MTYyYjIzOWUiLCJpYXQiOjE2OTM0ODg4OTUsImV4cCI6MTY5MzQ4OTQ5NX0.eJ9xDWSeBwre4l5ZBuRwTiKbaThlAVW5399p7rdCkcY", {
+            const response = await axios.post(`https://talentbridge.onrender.com/api/user/reset-password-with-token?resetToken=${resetToken}`, {
                 newPassword: data.newPassword,
                 confirmPassword: data.confirmPassword
             })
-            if (response.status === 201) {
+            if (response) {
+                console.log(response)
                 setOpenModal(prev => !prev)
             }
         } catch(error) {
@@ -82,7 +84,7 @@ const ResetPassword = () => {
                     {
                       error !== "" &&  <p className="text-red-700 text-[.95rem]">{error}</p>
                     }
-                    <button className={`bg-button-400 py-2 text-primary-500 hover:bg-opacity-[0.7] rounded-[0.3rem] md:text-[1.1rem] mb-2 ${isSubmitting || !isDirty || !isValid ? "bg-opacity-[0.7]  hover:bg-opacity-[0.7]" : ""}`}>{isSubmitting ? <ImSpinner className={`${isSubmitting ? "animate-spin bg-opacity-[0.7]" : "animate-none"} w-6 h-6`}/> : "Reset"}</button>
+                    <button className={`bg-button-400 py-2 text-primary-500 hover:bg-opacity-[0.7] flex justify-center items-center rounded-[0.3rem] md:text-[1.1rem] mb-2 ${isSubmitting || !isDirty || !isValid ? "bg-opacity-[0.7]  hover:bg-opacity-[0.7]" : ""}`}>{isSubmitting ? <ImSpinner className={`${isSubmitting ? "animate-spin bg-opacity-[0.7]" : "animate-none"} w-6 h-6`}/> : "Reset"}</button>
                 </form>
             </section>
             <Rodal height={240} width={350} visible={openModal} animation="zoom">

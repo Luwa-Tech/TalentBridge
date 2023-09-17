@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route } from "react-router-dom"
+import { AuthContextProvider } from "./context/AuthContext"
 import Layout from "./components/Layout"
 import Home from "./pages/Home"
 import SignIn from "./pages/SignIn"
@@ -6,7 +7,9 @@ import SignUp from "./pages/SignUp"
 import ResetPassword from "./pages/ResetPassword"
 import ForgotPassword from "./pages/ForgotPassword"
 import UserDashBoard from "./pages/UserDashBoard"
+import PostAJob from "./pages/PostAJob"
 import VerifyEmail from "./pages/verifyEmail"
+// import RequireAuth from "./components/RequireAuth"
 
 
 const App = () => {
@@ -20,13 +23,19 @@ const App = () => {
         <Route path="/sign-up/verify-email" element={<VerifyEmail />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+
+        
+        <Route path="/post-job" element={<PostAJob />} />
+        
         <Route path="/user-profile" element={<UserDashBoard />} />
 
       </Route>
     )
   )
    return (
-    <RouterProvider router={router}/>
+      <AuthContextProvider>
+          <RouterProvider router={router}/>
+        </AuthContextProvider>
    )
 }
 
