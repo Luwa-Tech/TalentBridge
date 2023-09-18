@@ -6,9 +6,9 @@
   </p>
 
 <p align="center">
-  <a href="https://yourlivesite.com">Live Site</a> |
+  <a href="https://talentbridge-app.netlify.app">Live Site</a> |
   <a href="https://github.com/yourusername/yourrepository/issues">Report Bugs</a> |
-  <a href="https://www.figma.com/yourfigmalink">Figma Design</a>
+  <a href="https://www.figma.com/file/dLmyDp9o6T3WQovXGOuGro/Job-Search-Ui-Kit?node-id=9%3A61&mode=dev">Figma Design</a>
 </p>
 
 ## About Project

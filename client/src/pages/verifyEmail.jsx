@@ -21,12 +21,15 @@ const VerifyEmail = () => {
     const verifyUserEmail = async () => {
         try {
             const response = await axios.get(`https://talentbridge.onrender.com/api/user/verify/${token}`)
-            if (response.status === 200 || response.status === 201) {
-                console.log(response)
+            if (response) {
                 setResponse(true)
             }
         }catch(error) {
-            setError(error.response.data.error)
+            if(error.response.status === 404) {
+                console.log(error.response)
+                setError("Sorry, we couldn't verify your email")
+            }
+            
         }
     }
 
@@ -35,12 +38,12 @@ const VerifyEmail = () => {
         <main>
             <div className="flex flex-col justify-center items-center mt-[5rem] gap-4">
 
-                            <form onClick={handleSubmit(verifyUserEmail)} noValidate>
+                            <form onClick={handleSubmit(verifyUserEmail)} noValidate className="flex flex-col gap-2 justify-center items-center">
                                 <h1 className="text-[1.1rem] text-center">Please click the button below to verify your email</h1>
-                                <button className="bg-secondary-500 text-primary-500 px-[.7rem] py-[.5rem] rounded-[.2rem] flex justify-center items-center hover:bg-opacity-[0.95]">{isSubmitting ? <ImSpinner className={`${isSubmitting ? "animate-spin bg-opacity-[0.7]" : "animate-none"} w-6 h-6`}/> : "Verify"}</button>
+                                <button className="bg-secondary-500 text-primary-500 px-[.7rem] py-[.5rem] rounded-[.2rem] flex justify-center w-[9rem] items-center hover:bg-opacity-[0.95]">{isSubmitting ? <ImSpinner className={`${isSubmitting ? "animate-spin bg-opacity-[0.7]" : "animate-none"} w-6 h-6`}/> : "Verify"}</button>
 
                                 {
-                                    error !== "" &&  <p className="text-red-700 text-[.95rem]">{error}</p>
+                                    error !== "" && <p className="text-red-700 text-[.95rem]">{error}</p>
                                 }
                             </form>
 
