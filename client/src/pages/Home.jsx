@@ -1,3 +1,7 @@
+import { NavLink } from "react-router-dom"
+import {motion, useInView} from "framer-motion"
+import {useRef} from "react"
+
 import carbonIcon from "../assets/icons/carbon_application-web.png"
 import marketingIcon from "../assets/icons/nimbus_marketing.png"
 import codeIcon from "../assets/icons/bi_code-slash.png"
@@ -9,16 +13,21 @@ import shopeeIcon from "../assets/icons/shopee-logo-40482 1.png"
 import tokopediaIcon from "../assets/icons/tokopedia-logo-40654CCDD6-seeklogo 1.png"
 
 const Home = () => {
+    const ref = useRef(null)
+    useInView(ref, {once: true})
     return (
         <main>
             <section className="bg-gradient-to-r from-secondary-500 to-secondary-400">
-            <article className="relative pt-[6rem] pb-[10rem] md:w-[90%] md:mx-auto">
-                <section className="text-primary-500 px-2 md:px-0">
+            <article ref={ref} className="relative pt-[6rem] pb-[10rem] md:w-[90%] md:mx-auto">
+                <motion.section variants={{
+                    hidden: {opacity: 0, y: 75},
+                    visible: {opacity: 1, y: 0}
+                }} initial="hidden" animate="visible" transition={{duration: 0.5, delay: 0.25}} className="text-primary-500 px-2 md:px-0">
                     <h2 className="text-[1.7rem] md:text-[3rem] font-normal leading-normal">200+ Jobs Listed</h2>
                     <h2 className="text-[2.2rem] md:text-[3.5rem] font-normal leading-normal">Find Your Dream Job</h2>
-                    <p className="mt-[1rem] text-[1rem] md:text-[1.4rem] font-normal leading-normal w-[90%] md:w-[40%]">Navigate Your Career Journey Seamlessly with TalentBridge - Your Job Search Companion</p>
-                    <button className="mt-6 text-[1rem] font-normal leading-normal cursor-pointer hover:opacity-[0.6] px-6 py-2 rounded-[.2rem] bg-primary-600">Find Jobs</button>
-                </section>
+                    <p className="mt-[1rem] mb-6 text-[1rem] md:text-[1.4rem] font-normal leading-normal w-[90%] md:w-[40%]">Navigate Your Career Journey Seamlessly with TalentBridge - Your Job Search Companion</p>
+                    <NavLink to="/search-jobs" className="mt-6 text-[1rem] font-normal leading-normal cursor-pointer hover:opacity-[0.6] px-6 py-2 rounded-[.2rem] bg-primary-600">Find Jobs</NavLink>
+                </motion.section>
 
                 <div className="first-curve">
                     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -29,9 +38,15 @@ const Home = () => {
             </section>
 
             <section className="bg-primary-700 px-2 md:px-0 pt-[1rem] pb-[12rem] md:pt-[2rem] md:pb-[12rem] relative">
-                <div className="md:w-[90%] md:mx-auto flex justify-between md:flex-row flex-col-reverse gap-[2.8rem] md:gap-[3rem]">
-                    <article className=" w-[95%] mx-auto md:w-auto flex gap-4 min-h-[10rem]">
-                        <section className="flex flex-col gap-6 mb-4">
+                <div ref={ref} className="md:w-[90%] md:mx-auto flex justify-between md:flex-row flex-col-reverse gap-[2.8rem] md:gap-[3rem]">
+                    <motion.article variants={{
+                            hidden: {opacity: 0, x: -250},
+                            visible: {opacity: 1, x: 0}
+                        }} initial="hidden" animate="visible" transition={{duration: 0.5, delay: 0.25}} className=" w-[95%] mx-auto md:w-auto flex gap-4 min-h-[10rem]">
+                        <motion.section variants={{
+                            hidden: {opacity: 0, y: -100},
+                            visible: {opacity: 1, y: 0}
+                        }} initial="hidden" animate="visible" transition={{duration: 0.5, delay: 0.6}}  className="flex flex-col gap-6 mb-4">
                             <div className="card">
                                 <img src={carbonIcon} className="w-[1.4rem] md:w-[1.8rem]" />
                                 <div className="px-4 pb-4">
@@ -47,9 +62,12 @@ const Home = () => {
                                     <p className="text-[.78rem] md:text-[1.1rem] font-normal leading-normal">43+ available positions</p>
                                 </div>
                             </div>
-                        </section>
+                        </motion.section>
 
-                        <section className="flex flex-col gap-6 mt-[3.5rem]">
+                        <motion.section variants={{
+                            hidden: {opacity: 0, y: 100},
+                            visible: {opacity: 1, y: 0}
+                        }} initial="hidden" animate="visible" transition={{duration: 0.5, delay: 0.6}} className="flex flex-col gap-6 mt-[3.5rem]">
                             <div className="card">
                                 <img src={marketingIcon} className="w-[1.4rem] md:w-[1.8rem]"/>
                                 <div className="px-4 pb-4">
@@ -65,14 +83,17 @@ const Home = () => {
                                     <p className="text-[.78rem] md:text-[1.1rem] font-normal leading-normal">30+ available positions</p>
                                 </div>
                             </div>
-                        </section>
-                    </article>
+                        </motion.section>
+                    </motion.article>
 
-                    <article className="md:w-[48%]">
+                    <motion.article variants={{
+                            hidden: {opacity: 0, x: 250},
+                            visible: {opacity: 1, x: 0}
+                        }} initial="hidden" animate="visible" transition={{duration: 0.5, delay: 0.25}} className="md:w-[48%]">
                         <h2 className="text-[2.2rem] mb-[1.1rem] md:text-[2.5rem] font-medium leading-normal">Popular Category</h2>
-                        <p className="text-[1rem] md:text-[1.4rem] font-normal md:leading-[1.75rem]">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there anything embarrassing.
+                        <p className="text-[1rem] md:text-[1.4rem] font-normal md:leading-[1.75rem]">Embark on a journey of exploration as you delve into the most in-demand fields, discovering a world of career opportunities that await you on TalentBridge - where your dream job is just a click away.
                         </p>
-                    </article>
+                    </motion.article>
                 </div>
 
                 <div className="second-curve">
@@ -84,14 +105,23 @@ const Home = () => {
 
             <section className="bg-secondary-500 text-primary-500 px-2 md:px-0 pt-[1rem] pb-[12rem] md:pt-[2rem] md:pb-[12rem] relative">
                 <div className="md:w-[90%] md:mx-auto flex justify-between md:flex-row flex-col gap-[2.8rem] md:gap-[3rem]">
-                <article className="md:w-[48%]">
+                <motion.article variants={{
+                            hidden: {opacity: 0, x: -250},
+                            visible: {opacity: 1, x: 0}
+                        }} initial="hidden" animate="visible" transition={{duration: 0.5, delay: 0.25}} className="md:w-[48%]">
                         <h2 className="text-[2.2rem] mb-[1.1rem] md:text-[2.5rem] font-medium leading-normal">Top Companies</h2>
-                        <p className="text-[1rem] md:text-[1.4rem] font-normal md:leading-[1.75rem]">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there anything embarrassing.
+                        <p className="text-[1rem] md:text-[1.4rem] font-normal md:leading-[1.75rem]">Connect with Industry Leaders and leading Innovators. Explore Career Opportunities with the Most Esteemed Companies on TalentBridge - Your Gateway to Success.
                         </p>
-                    </article>
+                    </motion.article>
 
-                    <article className="text-primary-500 w-[95%] mx-auto md:w-auto flex gap-4 min-h-[10rem]">
-                        <section className="flex flex-col gap-6 mb-4">
+                    <motion.article variants={{
+                            hidden: {opacity: 0, x: 250},
+                            visible: {opacity: 1, x: 0}
+                        }} initial="hidden" animate="visible" transition={{duration: 0.5, delay: 0.25}} className="text-primary-500 w-[95%] mx-auto md:w-auto flex gap-4 min-h-[10rem]">
+                        <motion.section variants={{
+                            hidden: {opacity: 0, y: -100},
+                            visible: {opacity: 1, y: 0}
+                        }} initial="hidden" animate="visible" transition={{duration: 0.5, delay: 0.6}} className="flex flex-col gap-6 mb-4">
                             <div className="card card-gradient">
                                 <div>
                                     <img src={webtoonIcon} className="w-[1.4rem] md:w-[1.8rem]" />
@@ -111,9 +141,12 @@ const Home = () => {
                                     <p className="text-[.78rem] md:text-[1.1rem] font-normal leading-normal">50+ available positions</p>
                                 </div>
                             </div>
-                        </section>
+                        </motion.section>
 
-                        <section className="flex flex-col gap-6 mt-[3.5rem]">
+                        <motion.section variants={{
+                            hidden: {opacity: 0, y: 100},
+                            visible: {opacity: 1, y: 0}
+                        }} initial="hidden" animate="visible" transition={{duration: 0.5, delay: 0.6}} className="flex flex-col gap-6 mt-[3.5rem]">
                             <div className="card card-gradient">
                                 <div>
                                     <img src={dribbleIcon} className="w-[1.4rem] md:w-[1.8rem]" />
@@ -133,8 +166,8 @@ const Home = () => {
                                     <p className="text-[.78rem] md:text-[1.1rem] font-normal leading-normal">35+ available positions</p>
                                 </div>
                             </div>
-                        </section>
-                    </article>
+                        </motion.section>
+                    </motion.article>
                 </div>
 
                 <div className="first-curve">
@@ -144,18 +177,24 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className="bg-primary-700 px-2 md:px-0 pt-[1rem] pb-[12rem] md:pt-[2rem] md:pb-[12rem] relative">
+            <section ref={ref} className="bg-primary-700 px-2 md:px-0 pt-[1rem] pb-[12rem] md:pt-[2rem] md:pb-[12rem] relative">
                 <div className="md:w-[90%] md:mx-auto flex justify-between md:flex-row flex-col gap-[2.8rem] md:gap-[3rem]">
-                    <article>
+                    <motion.article variants={{
+                            hidden: {opacity: 0, y: 100},
+                            visible: {opacity: 1, y: 0}
+                        }} initial="hidden" animate="visible" transition={{duration: 0.5, delay: 0.25}}>
                         <h2 className="text-[2.2rem] md:text-[2.5rem] font-medium leading-normal">Looking for a Job?</h2>
-                        <p className="text-[1rem] md:text-[1.4rem] font-normal md:leading-[1.75rem] w-[70%] my-[1rem]">We provide online instant cash loans with quick approval</p>
-                        <button className="text-[1rem] font-normal cursor-pointer hover:opacity-[0.6] px-4 py-2 rounded-[.2rem] bg-primary-600 text-primary-500">Find Jobs</button>
-                    </article>
-                    <article>
+                        <p className="text-[1rem] md:text-[1.4rem] font-normal md:leading-[1.75rem] w-[90%] my-[1rem]">Ready to Take the Next Step in Your Career? Begin Your Job Search Journey with TalentBridge and Discover the Perfect Opportunity Waiting just for You.</p>
+                        <NavLink to="/search-jobs" className="text-[1rem] font-normal cursor-pointer hover:opacity-[0.6] px-4 py-2 rounded-[.2rem] bg-primary-600 text-primary-500">Find Jobs</NavLink>
+                    </motion.article>
+                    <motion.article variants={{
+                            hidden: {opacity: 0, y: 100},
+                            visible: {opacity: 1, y: 0}
+                        }} initial="hidden" animate="visible" transition={{duration: 0.5, delay: 0.25}}>
                         <h2 className="text-[2.2rem] md:text-[2.5rem] font-medium leading-normal">Looking for an Expert?</h2>
-                        <p className="text-[1rem] md:text-[1.4rem] font-normal md:leading-[1.75rem] w-[70%] my-[1rem]">We provide online instant cash loans with quick approval</p>
-                        <button className="text-[1rem] font-normal cursor-pointer hover:opacity-[0.6] px-4 py-2 rounded-[.2rem] bg-primary-600 text-primary-500">Post a Job</button>
-                    </article>
+                        <p className="text-[1rem] md:text-[1.4rem] font-normal md:leading-[1.75rem] w-[90%] my-[1rem]">Seeking Top Talent to Elevate Your Projects? Explore a Pool of Expertise on TalentBridge, Where Exceptional Skills and Professionals Converge to Fuel Your Success.</p>
+                        <NavLink to="search-jobs" className="text-[1rem] font-normal cursor-pointer hover:opacity-[0.6] px-4 py-2 rounded-[.2rem] bg-primary-600 text-primary-500">Post a Job</NavLink>
+                    </motion.article>
                 </div>
 
                 <div className="third-curve">

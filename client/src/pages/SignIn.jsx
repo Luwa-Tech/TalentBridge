@@ -1,20 +1,20 @@
-import { NavLink, } from "react-router-dom"
+import { NavLink, useNavigate, useLocation} from "react-router-dom"
 import {useForm} from "react-hook-form"
 import {ImSpinner} from "react-icons/im"
 import axios from "axios"
 import { useState, useEffect } from "react"
 import {BsFillEyeFill, BsFillEyeSlashFill} from "react-icons/bs"
-// import useAuth from "../hooks/useAuth"
+import useAuth from "../hooks/useAuth"
 
 const SignIn = () => {
-    // const {setAuth} = useAuth()
+    const {setAuth} = useAuth()
 
     const [error, setError] = useState("")
     const [visible, setVisible] = useState(false)
 
-    // const location = useLocation()
-    // const navigate = useNavigate()
-    // const from = location.state?.from?.pathname || "/"
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state?.from?.pathname || "/"
 
     const form = useForm({
         mode: "onBlur"
@@ -31,7 +31,18 @@ const SignIn = () => {
         })
         if(response) {
             //give user access and redirect user profile
-            console.log(response)
+            console.log(response.data.user)
+
+            const roles = response.data.user.user.role
+            const accessToken = response.data.user.authToken
+
+            setAuth({
+                user: data.email,
+                roles: [roles],
+                accessToken: accessToken
+            })
+
+            navigate(from, {replace: true})
         }
         }catch(error) {
             setError(error.response.data.error)
@@ -51,7 +62,7 @@ const SignIn = () => {
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit(signInUser)} noValidate>
                     <label htmlFor="email" className="flex flex-col gap-2 text-[1rem] md:text-[1.26rem] font-normal leading-normal">
                         Email
-                        <input className="border-2 border-secondary-500 py-2 px-2 text-[1rem] rounded-[0.25rem] outline-none" id="email" type="email"  {...register("email", {
+                        <input className="border-[1.5px] border-secondary-500 py-2 px-2 text-[1rem] rounded-[0.25rem] outline-none" id="email" type="email"  {...register("email", {
                             required: {
                                 value: true,
                                 message: "email is required"
@@ -65,7 +76,7 @@ const SignIn = () => {
                     </label>
                     <label htmlFor="password" className="flex flex-col gap-2 text-[1rem] md:text-[1.26rem] font-normal leading-normal">
                         Password
-                        <div className="flex justify-between items-center border-2 px-2 text-[1rem] border-secondary-500 rounded-[0.25rem]">
+                        <div className="flex justify-between items-center border-[1.5px] px-2 text-[1rem] border-secondary-500 rounded-[0.25rem]">
                             <input  className="text-[1rem] w-full py-2 outline-none" type={visible ? "text" : "password"} id="password" {...register("password", {
                                 required: {
                                     value: true,

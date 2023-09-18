@@ -28,7 +28,6 @@ const ResetPassword = () => {
 
     const resetPassword = async (data) => {
         try {
-            //implement API token security
             const response = await axios.post(`https://talentbridge.onrender.com/api/user/reset-password-with-token?resetToken=${resetToken}`, {
                 newPassword: data.newPassword,
                 confirmPassword: data.confirmPassword
@@ -57,7 +56,7 @@ const ResetPassword = () => {
                 <form className="flex flex-col gap-4" onClick={handleSubmit(resetPassword)} noValidate>
                     <label htmlFor="newPassword" className="flex flex-col gap-2 text-[1rem] md:text-[1.26rem] font-normal leading-normal">
                         Password
-                        <div className="flex justify-between items-center border-2 px-2 text-[1rem] border-secondary-500 rounded-[0.25rem]">
+                        <div className="flex justify-between items-center border-[1.5px] px-2 text-[1rem] border-secondary-500 rounded-[0.25rem]">
                             <input className="text-[1rem] w-full py-2 outline-none" id="newPassword" type={newPassword ? "text" : "password"} {...register("newPassword", {
                                 required: {
                                     value: true,
@@ -70,7 +69,7 @@ const ResetPassword = () => {
                     </label>
                     <label htmlFor="confirmPassword" className="flex flex-col gap-2 text-[1rem] md:text-[1.26rem] font-normal leading-normal">
                         Repeat Password
-                        <div className="flex justify-between items-center border-2 px-2 text-[1rem] border-secondary-500 rounded-[0.25rem]">
+                        <div className="flex justify-between items-center border-[1.5px] px-2 text-[1rem] border-secondary-500 rounded-[0.25rem]">
                             <input className="text-[1rem] w-full py-2 outline-none" id="confirmPassword" type={confirmPassword ? "text" : "password"} {...register("confirmPassword", {
                                 required: {
                                     value: true,

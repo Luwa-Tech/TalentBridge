@@ -51,7 +51,7 @@ const SignUp = () => {
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit(submitForm)} noValidate>
                     <label htmlFor="firstname" className="flex flex-col gap-2 text-[1rem] md:text-[1.26rem] font-normal leading-normal">
                         Firstname
-                        <input  className="border-2 py-2 px-2 text-[1rem] border-secondary-500 rounded-[0.25rem] outline-none" type="text" id="firstname" {...register("firstname", {
+                        <input  className="border-[1.5px] py-2 px-2 text-[1rem] border-secondary-500 rounded-[0.25rem] outline-none" type="text" id="firstname" {...register("firstname", {
                             required: {
                                 value: true,
                                 message: "firstname is required"
@@ -61,7 +61,7 @@ const SignUp = () => {
                     </label>
                     <label htmlFor="lastname" className="flex flex-col gap-2 text-[1rem] md:text-[1.26rem] font-normal leading-normal">
                         Lastname
-                        <input  className="border-2 py-2 px-2 text-[1rem] border-secondary-500 rounded-[0.25rem] outline-none" type="text" id="lastname" {...register("lastname", {
+                        <input  className="border-[1.5px] py-2 px-2 text-[1rem] border-secondary-500 rounded-[0.25rem] outline-none" type="text" id="lastname" {...register("lastname", {
                             required: {
                                 value: true,
                                 message: "lastname is required"
@@ -71,7 +71,7 @@ const SignUp = () => {
                     </label>
                     <label htmlFor="email" className="flex flex-col gap-2 text-[1rem] md:text-[1.26rem] font-normal leading-normal">
                         Email
-                        <input  className="border-2 py-2 px-2 text-[1rem] border-secondary-500 rounded-[0.25rem] outline-none" type="email" id="email" {...register("email", {
+                        <input  className="border-[1.5px] py-2 px-2 text-[1rem] border-secondary-500 rounded-[0.25rem] outline-none" type="email" id="email" {...register("email", {
                             required: {
                                 value: true,
                                 message: "email is required"
@@ -85,7 +85,7 @@ const SignUp = () => {
                     </label>
                     <label htmlFor="password" className="flex flex-col gap-2 text-[1rem] md:text-[1.26rem] font-normal leading-normal">
                         Password
-                        <div className="flex justify-between items-center border-2 px-2 text-[1rem] border-secondary-500 rounded-[0.25rem]">
+                        <div className="flex justify-between items-center border-[1.5px] px-2 text-[1rem] border-secondary-500 rounded-[0.25rem]">
                             <input  className="text-[1rem] w-full py-2 outline-none" id="password" type={visible ? "text" : "password"} {...register("password", {
                                     pattern: {
                                         value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/ ,
