@@ -41,6 +41,10 @@ const ResetPassword = () => {
         }
     }
 
+    const handleDoubleClickOnInput = (e) => {
+        e.preventDefault()
+    }
+
     //reset form if submission is successful
     useEffect(() => {
         if (isValid && isSubmitSuccessful) {
@@ -56,34 +60,34 @@ const ResetPassword = () => {
                 <form className="flex flex-col gap-4" onClick={handleSubmit(resetPassword)} noValidate>
                     <label htmlFor="newPassword" className="flex flex-col gap-2 text-[1rem] md:text-[1.26rem] font-normal leading-normal">
                         Password
-                        <div className="flex justify-between items-center border-[1.5px] px-2 text-[1rem] border-secondary-500 rounded-[0.25rem]">
-                            <input className="text-[1rem] w-full py-2 outline-none" id="newPassword" type={newPassword ? "text" : "password"} {...register("newPassword", {
+                        <div className="flex items-center text-[1rem] border-[1.5px] border-secondary-500 rounded-[0.25rem]">
+                            <input className="text-[1rem] w-full py-2 px-2 outline-none" id="newPassword" type={newPassword ? "text" : "password"} {...register("newPassword", {
                                 required: {
                                     value: true,
                                     message: "Password is required"
                                 }
-                            })}/>
-                            <span className="px-2 py-2 rounded-[1.2rem] hover:bg-slate-400" onClick={() => setNewPassword(prev => !prev)}>{newPassword ? <BsFillEyeFill/> : <BsFillEyeSlashFill />}</span>
+                            })} onDoubleClick={handleDoubleClickOnInput}/>
+                            <span className="px-4 py-2 cursor-pointer" onClick={() => setNewPassword(prev => !prev)}>{newPassword ? <BsFillEyeFill/> : <BsFillEyeSlashFill />}</span>
                         </div>
                         <p className="text-red-700 text-[.8rem]">{errors.password?.message}</p>
                     </label>
                     <label htmlFor="confirmPassword" className="flex flex-col gap-2 text-[1rem] md:text-[1.26rem] font-normal leading-normal">
                         Repeat Password
-                        <div className="flex justify-between items-center border-[1.5px] px-2 text-[1rem] border-secondary-500 rounded-[0.25rem]">
-                            <input className="text-[1rem] w-full py-2 outline-none" id="confirmPassword" type={confirmPassword ? "text" : "password"} {...register("confirmPassword", {
+                        <div className="flex items-center text-[1rem] border-[1.5px] border-secondary-500 rounded-[0.25rem]">
+                            <input className="text-[1rem] w-full py-2 px-2 outline-none" id="confirmPassword" type={confirmPassword ? "text" : "password"} {...register("confirmPassword", {
                                 required: {
                                     value: true,
                                     message: "Password is required"
                                 }
-                            })} />
-                            <span className="px-2 py-2 rounded-[1.2rem] hover:bg-slate-400" onClick={() => setConfirmPassword(prev => !prev)}>{confirmPassword ? <BsFillEyeFill/> : <BsFillEyeSlashFill />}</span>
+                            })} onDoubleClick={handleDoubleClickOnInput}/>
+                            <span className="px-4 py-2 cursor-pointer" onClick={() => setConfirmPassword(prev => !prev)}>{confirmPassword ? <BsFillEyeFill/> : <BsFillEyeSlashFill />}</span>
                         </div>
                         <p className="text-red-700 text-[.8rem]">{errors.password?.message}</p>
                     </label>
                     {
                       error !== "" &&  <p className="text-red-700 text-[.95rem]">{error}</p>
                     }
-                    <button className={`bg-button-400 py-2 text-primary-500 hover:bg-opacity-[0.7] flex justify-center items-center rounded-[0.3rem] md:text-[1.1rem] mb-2 ${isSubmitting || !isDirty || !isValid ? "bg-opacity-[0.7]  hover:bg-opacity-[0.7]" : ""}`}>{isSubmitting ? <ImSpinner className={`${isSubmitting ? "animate-spin bg-opacity-[0.7]" : "animate-none"} w-6 h-6`}/> : "Reset"}</button>
+                    <button type="submit" className={`bg-button-400 py-2 text-primary-500 hover:bg-opacity-[0.7] flex justify-center items-center rounded-[0.3rem] md:text-[1.1rem] mb-2 ${isSubmitting || !isDirty || !isValid ? "bg-opacity-[0.7]  hover:bg-opacity-[0.7]" : ""}`}>{isSubmitting ? <ImSpinner className={`${isSubmitting ? "animate-spin bg-opacity-[0.7]" : "animate-none"} w-6 h-6`}/> : "Reset"}</button>
                 </form>
             </section>
             <Rodal height={240} width={350} visible={openModal} animation="zoom">

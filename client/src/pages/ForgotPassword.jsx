@@ -32,6 +32,10 @@ const ForgotPassword = () => {
         }
     }
 
+    const handleDoubleClickOnInput = (e) => {
+        e.preventDefault()
+    }
+
     useEffect(() => {
         if (isValid && isSubmitSuccessful) {
             reset()
@@ -55,19 +59,20 @@ const ForgotPassword = () => {
                                 value:  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                                 message: "invalid email format"
                             }
-                        })}/>
+                        })} onDoubleClick={handleDoubleClickOnInput}/>
                         <p className="text-red-700 text-[.8rem]">{errors.email?.message}</p>
                     </label>
                     {
                       error !== "" &&  <p className="text-red-700 text-[.95rem]">{error}</p>
                     }
-                    <button disabled={!isDirty || !isValid || isSubmitting}  className={`bg-button-400 py-2 text-primary-500 hover:bg-opacity-[0.7] flex justify-center items-center rounded-[0.3rem] md:text-[1.1rem] mb-2 ${isSubmitting || !isDirty || !isValid ? "bg-opacity-[0.7] hover:bg-opacity-[0.7] " : ""}`}>{isSubmitting ? <ImSpinner className={`${isSubmitting ? "animate-spin bg-opacity-[0.7]" : "animate-none"} w-6 h-6`}/> : "Recover"}</button>
+                    <button type="submit" disabled={!isDirty || !isValid || isSubmitting}  className={`bg-button-400 py-2 text-primary-500 hover:bg-opacity-[0.7] flex justify-center items-center rounded-[0.3rem] md:text-[1.1rem] mb-2 ${isSubmitting || !isDirty || !isValid ? "bg-opacity-[0.7] hover:bg-opacity-[0.7] " : ""}`}>{isSubmitting ? <ImSpinner className={`${isSubmitting ? "animate-spin bg-opacity-[0.7]" : "animate-none"} w-6 h-6`}/> : "Recover"}</button>
                 </form>
             </section>
             <Rodal height={240} width={350} visible={openModal} animation="zoom">
                 <section className="mt-[4rem] flex flex-col items-center gap-4">
                     <p className="text-center text-[1rem] text-[#334155]">{responseMessage}</p>
-                    <button className="bg-secondary-500 text-primary-500 hover:bg-opacity-[0.95] px-[2.5rem] py-2 rounded-[.4rem]" onClick={() => setOpenModal(prev => !prev)}>Go to Login</button>
+                    {/* button should link to login page */}
+                    <NavLink to="/login" className="bg-secondary-500 text-primary-500 hover:bg-opacity-[0.95] px-[2.5rem] py-2 rounded-[.4rem]" onClick={() => setOpenModal(prev => !prev)}>Go to Login</NavLink>
                 </section>
             </Rodal>
         </main>
