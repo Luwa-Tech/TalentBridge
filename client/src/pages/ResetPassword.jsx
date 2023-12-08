@@ -60,7 +60,7 @@ const ResetPassword = () => {
         <main className="mt-[2rem] md:mt-[.5rem]">
             <section className="md:w-[30%] mx-auto w-[80%] my-[5rem]">
                 <h1 className="text-[1.3rem] md:text-[1.7rem] mb-6 font-medium leading-normal text-center">Reset Password</h1>
-                <form className="flex flex-col gap-4" onSubmit={handleSubmit(resetPassword)}>
+                <form className="flex flex-col gap-4" onSubmit={handleSubmit(resetPassword)} noValidate>
                     <div className="flex flex-col gap-2 font-normal leading-normal">
                         <div className="relative text-[1rem] border-[1.5px] border-secondary-500 rounded-[0.25rem]">
                             <input className="text-[1rem] w-full py-2 px-2 outline-none" placeholder="Password" id="newPassword" type={newPassword ? "text" : "password"} {...register("newPassword", {
