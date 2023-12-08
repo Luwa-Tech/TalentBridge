@@ -32,10 +32,6 @@ const ForgotPassword = () => {
         }
     }
 
-    const handleDoubleClickOnInput = (e) => {
-        e.preventDefault()
-    }
-
     useEffect(() => {
         if (isValid && isSubmitSuccessful) {
             reset()
@@ -44,7 +40,6 @@ const ForgotPassword = () => {
 
     return (
         <main className="mt-[2rem] md:mt-[.5rem]">
-            {/* <NavLink to="/" className="px-2 md:px-10 text-[1.1rem] md:text-[1.6rem] font-bold leading-normal text-secondary-500">TalentBridge</NavLink> */}
             <section className="md:w-[30%] mx-auto my-[5rem] w-[80%]">
                 <p className="text-[1.3rem] md:text-[1.7rem] mb-6 font-medium leading-normal text-center">Recovery Email</p>
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit(initPasswordReset)} noValidate>
