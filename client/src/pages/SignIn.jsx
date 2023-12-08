@@ -49,10 +49,6 @@ const SignIn = () => {
         }
     }
 
-    const handleDoubleClickOnInput = (e) => {
-        e.preventDefault()
-    }
-
     useEffect(() => {
         if (isValid && isSubmitSuccessful) {
             reset()
@@ -64,33 +60,33 @@ const SignIn = () => {
             <section className="md:w-[30%] mx-auto w-[80%]">
                 <h1 className="text-[1.3rem] md:text-[1.7rem] mb-6 font-medium leading-normal text-center">Welcome to TalentBridge</h1>
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit(signInUser)} noValidate>
-                    <label htmlFor="email" className="flex flex-col gap-2 text-[1rem] md:text-[1.26rem] font-normal leading-normal">
-                        Email
-                        <input className="border-[1.5px] border-secondary-500 py-2 px-2 text-[1rem] rounded-[0.25rem] outline-none" id="email" type="email"  {...register("email", {
+                    <div className="flex flex-col gap-2 font-normal leading-normal">
+                        
+                        <input placeholder="Email" className="border-[1.5px] border-secondary-500 py-2 px-2 text-[1rem] rounded-[0.25rem] outline-none" id="email" type="email"  {...register("email", {
                             required: {
                                 value: true,
-                                message: "email is required"
+                                message: "Email is required"
                             },
                             pattern: {
                                 value:  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                                 message: "Invalid email format"
                             }
-                        })} onDoubleClick={handleDoubleClickOnInput}/>
+                        })}/>
                         <p className="text-red-700 text-[.8rem]">{errors.email?.message}</p>
-                    </label>
-                    <label htmlFor="password" className="flex flex-col gap-2 text-[1rem] md:text-[1.26rem] font-normal leading-normal">
-                        Password
+                    </div>
+                    <div className="flex flex-col gap-2 font-normal leading-normal">
+                        
                         <div className="flex items-center text-[1rem] border-[1.5px] border-secondary-500 rounded-[0.25rem]">
-                            <input  className="text-[1rem] w-full py-2 px-2 outline-none" type={visible ? "text" : "password"} id="password" {...register("password", {
+                            <input placeholder="Password" className="text-[1rem] w-full py-2 px-2 outline-none" type={visible ? "text" : "password"} id="password" {...register("password", {
                                 required: {
                                     value: true,
                                     message: "Password is required"
                                 }
-                            })} onDoubleClick={handleDoubleClickOnInput}/>
+                            })}/>
                             <span className="px-4 py-2 cursor-pointer" onClick={() => setVisible(prev => !prev)}>{visible ? <BsFillEyeFill/> : <BsFillEyeSlashFill />}</span>
                         </div>
                         <p className="text-red-700 text-[.8rem]">{errors.password?.message}</p>
-                    </label>
+                    </div>
                     <NavLink to="/forgot-password" className="hover:underline text-secondary-500 text-right mt-2">Forgot Password?</NavLink>
                     {
                       error !== "" &&  <p className="text-red-700 text-[.95rem]">{error}</p>
